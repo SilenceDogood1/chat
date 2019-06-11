@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Online chat</title>
+        <link rel="stylesheet" href="main/main.css">
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Fixed navbar -->
+
+        <nav class="navbar">
+            <div class="container">
+              <div>
+                    <!--<div class="spinner-grow text-danger"></div>-->
+            `       <a class="" style="font-size: 30px; " href="">Live chat</a>
+                </div class="top-buttons">
+                <button class="btn btn-info text-center mb-2" onclick="changeTheme()" >
+                        <i id="turn-on" class='fas fa-volume-up'></i>
+                        <i id="turn-Off" class='fas fa-volume-mute'></i>
+                </button>
+                <button class="btn btn-info text-center mb-2" onclick="changeTheme()" type="button" >
+                        <i id="lighth-indicator" class="fas fa-sun"></i>
+                        <i id="darkth-indicator" class="fas fa-moon"></i>
+                </button>
+                <div>
+                        <form class="form-inline" action="/action_page.php">
+                            <label for="email" class="mr-sm-2">Nick name:</label>
+                            <input type="email" class="form-control mb-2 mr-sm-2" id="email">
+                            <label for="pwd" class="mr-sm-2">Password:</label>
+                            <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
+                            <div class="form-check mb-2 mr-sm-2">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox"> Remember me
+                              </label>
+                            </div>
+                            <button type="submit" class="btn btn-info mb-2" href="">Submit</button>
+                        </form>
+                </div>
+            </div>
+        </nav>
+
+<!-- Main Page-->
+
+        <div class="container-fluid">
+            <div class="row">
+
+              <!--Left side container-->
+
+                <div class="col-xs-12 col-sm-6 col-lg-8 container-left">
+                       <div class="jumbotron jumbotron-fluid">
+                               <div class="container-fluid container-fluid-left">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-lg-6 left-chat">
+                                            <p><i class='fas fa-comment-alt'>Hey bro</i></p>
+                                            <p><i class='fas fa-comment-alt'>How is you day</i></p>
+                                            <p><i class='fas fa-comment-alt'>What are you doing now?</i>
+                                            <p><i class='fas fa-comment-alt'>What?</i></p>
+                                            <p><i class='fas fa-comment-alt'>How did you get there?</i></p>
+                                        </div>
+                                             <div class="col-xs-6 col-sm-6 col-lg-6 talktext round right-chat" ng-show="logEntity.type == 'text'">
+                                                <p><i class='fas fa-comment-alt'>Hey man</i></p>
+                                                <p><i class='fas fa-comment-alt'>Not bad, not bad...</i></p>
+                                                <p><i class='fas fa-comment-alt'>I'm working in police now!</i></p>
+                                                <p><i class='fas fa-comment-alt'>I had many customers in the police before. So, I decided to go to work in the police. Now, I can sell drugs to my colleagues.
+                                                Just business and marketing</i></p>
+                                        </div>
+                                    </div>
+                               </div>
+                       </div>
+                
+                       <div ng-show="showTyping" class="is-typing"><i class="fas fa-pencil-alt blink_me"></i> ...
+                       </div>
+                        <div class="input-group">
+                           <div class="input-group-prepend" >
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-target="#chatStopModal" type="button"><i class="fas fa-sign-out-alt"></i>
+                                        Smiles
+                                    </button>
+                                    <div class="dropdown-menu">
+                                            <a class="dropdown-item smiles" href="#"><span><button>&#128512;</button><button>&#128513;</button><button>&#128514;</button></span></a></button>
+                                            <a class="dropdown-item smiles" href="#"><span><button>&#128515;</button><button>&#128516;</button><button>&#128517;</button></span></a></button>
+                                            <a class="dropdown-item smiles" href="#"><span><button>&#128518;</button><button>&#128519;</button><button>&#128521;</button></span></a></button>
+                                     </div>
+                                </div>
+                           </div>
+                               <input type="text" class="form-control id="input-text-chat-debug" on-typing="tapTap()" on-enter="sendMessage()" ng-readonly="!isConnected" ng-model="inputMessage" ng-disabled="!isConnected" placeholder="Enter text...">
+                               <div class="input-group-append">
+                                   <button type="send" class="btn btn-info mb-2">Send</button>
+                               </div> 
+                        </div>          
+                </div>
+
+              <!--Right side container-->
+
+                <div class="col-xs-12 col-sm-6 col-lg-4 container-right">
+                       <div class="chat">
+                             <video class="live" width= 100% height=auto controls="controls" poster="video/duel.jpg"></video>
+                              <div class="container quests">
+                                <p>Guest 1</p>      
+                                <p>Guest 2</p>    
+                                <p>Guest 3</p> 
+                                <p>Guest 4</p>   
+                              </div>
+                        </div>
+                </div>
+            </div>
+         </div>
+         <footer> </footer>
+<!-- jQuery  (necessary for Bootstrap's Javascript plugins-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!--Latest compiled and minified JavaScript for Bootstrap-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </body>
+</html>

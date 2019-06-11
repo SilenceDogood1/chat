@@ -1,0 +1,82 @@
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    color: -internal-root-color;
+}
+body {
+    margin: 0;
+    font-family: "Roboto";
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3e3f3a;
+    text-align: left;
+    background-color: #fff;
+}
+.navbar {
+    border-bottom: 1px solid #ececec;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+nav {
+    display: block;
+}
+.online-display-wrapper {
+    padding-bottom: 5px;
+}
+
+#turn-Off {
+    display: none;
+}
+
+#darkth-indicator {
+    display: none;
+}
+
+.container-left {
+    background-color:grey; 
+    padding: 10px;
+}
+
+.container-fluid-left {
+    height: 420px;
+}
+
+.left-chat{
+    font-size:18px;
+    color:green;
+}
+
+.right-chat {
+    font-size:18px;
+    color:grey;
+}
+
+.smiles {
+    font-size:15px;
+}
+
+.container-right {
+    background-color: white;
+}
+
+.live {
+
+}
+
+.quests {
+    height: 20px;
+}
