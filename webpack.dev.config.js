@@ -4,7 +4,7 @@ const htmlWebPackPlugin = require ('html-webpack-plugin');
 
 const output = {
     entry: {
-      main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './public/main/JS_files/index.js' ]
+      main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js' ]
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -26,7 +26,7 @@ const output = {
             failOnError: false,
             failOnWarning: false,
           }
-        },
+    },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -55,7 +55,7 @@ const output = {
     },
     plugins: [
       new htmlWebPackPlugin({
-        template: "./public/index.html",
+        template: "./src/html/index.html",
         filename: "./index.html",
         excludeChunks: [ 'server' ],
       }),
