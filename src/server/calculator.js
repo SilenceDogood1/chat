@@ -1,5 +1,5 @@
  
- const calculator = (request, response) => {
+const calculator = (request, response) => {
  const {number1, number2, operation} = request.body;
  let errorMessage;
     //const req = JSON.parse(request.body);
