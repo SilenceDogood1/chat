@@ -80,3 +80,7 @@ nav {
 .quests {
     height: 20px;
 }
+
+.down {
+    overflow: auto;
+}
