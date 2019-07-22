@@ -39,11 +39,11 @@ const Chat = db.define('chats', {
 });
 
 
-const create = () => {
-  return Chat.create({ sender: 'user2', text: 'Hi!'})
+export const create = (text) => {
+  return Chat.create({ sender: 'user2', text })
     .then(result => result)
     .catch(error => console.log(error));
-  };
+};
 
 const getChat = () => {
   return Chat.findAll({})

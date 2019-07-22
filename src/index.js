@@ -4,12 +4,17 @@ import { nextTick } from 'q';
 
 
 const generateHTMLP = (message) => {
-  const { text } = message;
+  const { text, time } = message;
 
   const firstPart = '<p><i class=\'fas fa-comment-alt\'>';
   const secondPart = '</i></p>';
-  
-  const result = firstPart + text + secondPart;
+// time === '2019-07-10 10:51:32.784'
+  const messageDate = new Date(time);
+
+  const formattedTime = messageDate.getHours() + ":" + messageDate.getMinutes() + ":" + messageDate.getSeconds();
+  //TODO: wrap formattedTime in HTML tag
+
+  const result = firstPart + formattedTime + " " + text + secondPart;
 
   return result;
 }
@@ -46,23 +51,53 @@ if(typeof(module.hot) !== 'undefined') {
 }
 */
 //const letTry = () => {
-const xhr = new XMLHttpRequest();
-
-xhr.open('GET', 'http://localhost:3000/api/v1', false);
-
-xhr.send();
-
-
-if (xhr.status != 200) {
- 
-  alert( xhr.status + ': ' + xhr.statusText ); 
-
+const getChat = () => {
+  const xhr = new XMLHttpRequest();
   
-} else {
-  const nextStep = JSON.parse(xhr.responseText);
-  console.log(nextStep);
-  sendToHtml(nextStep);
+  xhr.open('GET', 'http://localhost:3000/api/v1', false);
+  
+  xhr.send();
+  
+  
+  if (xhr.status != 200) {
+   
+    alert( xhr.status + ': ' + xhr.statusText ); 
+  
+    
+  } else {
+    const nextStep = JSON.parse(xhr.responseText);
+    console.log(nextStep);
+    sendToHtml(nextStep);
+  }
+}
+
+getChat();
+
+const send = () => {
+  const input = document.querySelector("#input-text-chat-debug");
+  const message = input.value;
+  input.value = "";
+
+  const post = new XMLHttpRequest();
+
+  post.open('POST', 'http://localhost:3000/api/v1', false);
+  post.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  post.send(JSON.stringify({ message }));
+  // TODO: look at 62 line
+  // trigger getChat() if post.status === 200
+  if (post.status != 200) {
+    alert( post.status + ': ' + post.statusText);
+  } else {
+    getChat();
+  }
 }
 
 
-//window.onload(letTry);
+const sendBtn = document.querySelector('#btn-send');
+console.log(sendBtn);
+sendBtn.onclick = send;
+
+
+function displayDate () {
+  document.getElementById("demo").innerHTML = Date();
+};

@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../../webpack.dev.config.js';
-import {getMessages} from './database.js';
+import {getMessages, create} from './database.js';
 
 const app = express(),
     DIST_DIR = __dirname,
@@ -44,15 +44,19 @@ app.get('/api/v1/',  (request, response) => {
         const resultToSend = result.map(item => {
             const sender = item.dataValues.sender;
             const text = item.dataValues.text;
-            const message = {sender, text};
+            const time = item.dataValues.createdAt;
+            const message = {sender, text, time};
+            
             return message;
         })
         response.send(resultToSend);
      })
 });
 
-app.post('/api/v1/w2', (request, response) => {
-    response.send('Hello world');
+app.post('/api/v1', (request, response) => {
+    const text = request.body.message;
+    create(text);
+    response.status(200).end()
 });
 
 app.use(express.static('public'));

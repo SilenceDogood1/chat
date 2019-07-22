@@ -55,8 +55,10 @@
                                <div class="container-fluid container-fluid-left">
                                     <div class="row">
                                         <div id="user1" class="col-xs-6 col-sm-6 col-lg-6 left-chat">
+                                                <p id="demo"></p>
                                         </div>
                                         <div id="user2" class="col-xs-6 col-sm-6 col-lg-6 talktext round right-chat" ng-show="logEntity.type == 'text'">
+                                            <p id="demo"></p>
                                         </div>
                                     </div>
                                </div>
@@ -77,9 +79,9 @@
                                      </div>
                                 </div>
                            </div>
-                               <input type="text" class="form-control id="input-text-chat-debug" on-typing="tapTap()" on-enter="sendMessage()" ng-readonly="!isConnected" ng-model="inputMessage" ng-disabled="!isConnected" placeholder="Enter text...">
+                               <input type="text" class="form-control" id="input-text-chat-debug" on-typing="tapTap()" on-enter="sendMessage()" ng-readonly="!isConnected" ng-model="inputMessage" ng-disabled="!isConnected" placeholder="Enter text...">
                                <div class="input-group-append">
-                                   <button type="send" class="btn btn-info mb-2">Send</button>
+                                   <button type="send" class="btn btn-info mb-2" id="btn-send" onclick=displayDate()">Send</button>
                                </div> 
                         </div>          
                 </div>

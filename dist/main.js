@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0f9dc52341a630303ce9";
+/******/ 	var hotCurrentHash = "8723e85a4509d555bd90";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5651,10 +5651,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var generateHTMLP = function generateHTMLP(message) {
-  var text = message.text;
+  var text = message.text,
+      time = message.time;
   var firstPart = '<p><i class=\'fas fa-comment-alt\'>';
-  var secondPart = '</i></p>';
-  var result = firstPart + text + secondPart;
+  var secondPart = '</i></p>'; // time === '2019-07-10 10:51:32.784'
+
+  var messageDate = new Date(time);
+  var formattedTime = messageDate.getHours() + ":" + messageDate.getMinutes() + ":" + messageDate.getSeconds(); //TODO: wrap formattedTime in HTML tag
+
+  var result = firstPart + formattedTime + " " + text + secondPart;
   return result;
 };
 
@@ -5694,17 +5699,50 @@ if(typeof(module.hot) !== 'undefined') {
 //const letTry = () => {
 
 
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:3000/api/v1', false);
-xhr.send();
+var getChat = function getChat() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://localhost:3000/api/v1', false);
+  xhr.send();
 
-if (xhr.status != 200) {
-  alert(xhr.status + ': ' + xhr.statusText);
-} else {
-  var nextStep = JSON.parse(xhr.responseText);
-  console.log(nextStep);
-  sendToHtml(nextStep);
-} //window.onload(letTry);
+  if (xhr.status != 200) {
+    alert(xhr.status + ': ' + xhr.statusText);
+  } else {
+    var nextStep = JSON.parse(xhr.responseText);
+    console.log(nextStep);
+    sendToHtml(nextStep);
+  }
+};
+
+getChat();
+
+var send = function send() {
+  var input = document.querySelector("#input-text-chat-debug");
+  var message = input.value;
+  input.value = "";
+  var post = new XMLHttpRequest();
+  post.open('POST', 'http://localhost:3000/api/v1', false);
+  post.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  post.send(JSON.stringify({
+    message: message
+  })); // TODO: look at 62 line
+  // trigger getChat() if post.status === 200
+
+  if (post.status != 200) {
+    alert(post.status + ': ' + post.statusText);
+  } else {
+    getChat();
+  }
+};
+
+var sendBtn = document.querySelector('#btn-send');
+console.log(sendBtn);
+sendBtn.onclick = send;
+
+function displayDate() {
+  document.getElementById("demo").innerHTML = Date();
+}
+
+;
 
 /***/ }),
 
