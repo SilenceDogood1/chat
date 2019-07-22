@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "8723e85a4509d555bd90";
+/******/ 	var hotCurrentHash = "c62e1dac99aba08e75bc";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5686,18 +5686,7 @@ var sendToHtml = function sendToHtml(messagesToSend) {
   user1Div.innerHTML = generateDIV(user1Messages);
   var user2Div = document.querySelector('#user2');
   user2Div.innerHTML = generateDIV(user2Messages);
-}; // <p><i class='fas fa-comment-alt'> text </i></p>
-
-/*
-// Log message to console
-logMessage('A very warm welcome to Expack!')
-// Needed for Hot Module Replacement
-if(typeof(module.hot) !== 'undefined') {
-  module.hot.accept() // eslint-disable-line no-undef  
-}
-*/
-//const letTry = () => {
-
+};
 
 var getChat = function getChat() {
   var xhr = new XMLHttpRequest();
@@ -5724,8 +5713,7 @@ var send = function send() {
   post.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   post.send(JSON.stringify({
     message: message
-  })); // TODO: look at 62 line
-  // trigger getChat() if post.status === 200
+  }));
 
   if (post.status != 200) {
     alert(post.status + ': ' + post.statusText);

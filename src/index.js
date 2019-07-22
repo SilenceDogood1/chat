@@ -40,17 +40,6 @@ const sendToHtml = (messagesToSend) => {
   user2Div.innerHTML = generateDIV(user2Messages);
 }
 
-
-// <p><i class='fas fa-comment-alt'> text </i></p>
-/*
-// Log message to console
-logMessage('A very warm welcome to Expack!')
-// Needed for Hot Module Replacement
-if(typeof(module.hot) !== 'undefined') {
-  module.hot.accept() // eslint-disable-line no-undef  
-}
-*/
-//const letTry = () => {
 const getChat = () => {
   const xhr = new XMLHttpRequest();
   
@@ -83,8 +72,8 @@ const send = () => {
   post.open('POST', 'http://localhost:3000/api/v1', false);
   post.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   post.send(JSON.stringify({ message }));
-  // TODO: look at 62 line
-  // trigger getChat() if post.status === 200
+ 
+  
   if (post.status != 200) {
     alert( post.status + ': ' + post.statusText);
   } else {

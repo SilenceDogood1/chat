@@ -1,6 +1,6 @@
 # Don't track content of these folders
 
-node_modules/
+
 someOtherfoler/
 package-lock.json
 /imports/api/server/options/settings.js
@@ -18,6 +18,9 @@ settings.json
 *.so
 
 *.so
+*/*
+**/
+*//
 
 # Packages #
 ############

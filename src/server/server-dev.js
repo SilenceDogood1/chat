@@ -22,25 +22,13 @@ app.use(webpackHotMiddleware(compiler, {
   }));
 
 app.use(webpackHotMiddleware(compiler));
-/*
-app.get('*', (req, res, next) => {
-    compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
-    if (err) {
-      return next(err)
-    }
-    res.set('content-type', 'text/html')
-    res.send(result)
-    res.end()
-    })
-  });
-*/
+
 app.use(express.json()) // for parsing application/json
 
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.get('/api/v1/',  (request, response) => {
     return getMessages().then(result => {
-        // console.log(result);
         const resultToSend = result.map(item => {
             const sender = item.dataValues.sender;
             const text = item.dataValues.text;
@@ -70,27 +58,6 @@ app.listen(3000, () => {
 
 const db = require('../../src/server/database');
 
-/*
-// Test DB
-db.authenticate()
-  .then(() => console.log('Database connected...'))
-  .catch(err => console.log('Erorr: ' + err))
-*/
 
 // Gig routes
 app.use('/gigs', require('../routes/gigs'));
-
-
-
-
-/*{
-    "number1": 1,
-    "number2": 2,
-    "operation": "multiply"
-}
-
-{
-    "code": 200,
-    "data": {"result": 2},
-    "error": ""
-}*/
